@@ -1,0 +1,7 @@
+---
+- name: display default var
+  debug:
+    var: skeleton_default_var
+- name: display role var
+  debug:
+    var: skeleton_role_var
