@@ -1,7 +1,28 @@
 ---
-- name: display default var
-  debug:
-    var: skeleton_default_var
-- name: display role var
-  debug:
-    var: skeleton_role_var
+- name: add GPG KEY
+  rpm_key:
+    key: https://www.percona.com/downloads/RPM-GPG-KEY-percona
+# - name: add yum repo
+#   yum_repository:
+#     name: "{{ item.name }}"
+#     description: "{{ item.description }}"
+#     enabled: "{{ item.enabled }}"
+#     gpgcheck: true
+#     gpgkey: file:///etc/pki/rpm-gpg/PERCONA-PACKAGING-KEY
+#     file: percona-tools-release
+#   loop:
+#     - name: tools-release-x86_64
+#       description: Percona Tools release/x86_64 YUM repository
+#       baseurl: http://repo.percona.com/tools/yum/release/$releasever/RPMS/x86_64
+#       enabled: true
+#     - name: tools-release-noarch
+#       description: Percona Tools release/noarch YUM repository
+#       baseurl: http://repo.percona.com/tools/yum/release/$releasever/RPMS/noarch
+#       enabled: true
+#     - name: tools-release-sources
+#       description: Percona Tools release/sources YUM repository
+#       baseurl: http://repo.percona.com/tools/yum/release/$releasever/SRPMS
+#       enabled: false
+# - name: install XtraBackup
+#   yum:
+#     name: percona-xtrabackup-{{ xtrabackup_version }}
