@@ -1,0 +1,18 @@
+language: python
+services: docker
+env:
+  global:
+  - ROLE_NAME: xtrabackup
+install:
+  - pip install molecule yamllint ansible-lint docker
+before_script:
+  - cd ../
+  - git clone --depth=1 https://github.com/wate/ansible-role-mariadb.git mariadb
+  - mv ansible-role-$ROLE_NAME $ROLE_NAME
+  - cd $ROLE_NAME
+script:
+  - molecule test
+notifications:
+  email: false
+  slack:
+    secure: Wm7t37VDUQAO6Dl30fKMO7SS2Rae+xBN6QjkgudR07XQr7Jlxad566/eATvd/u5T47MAr6nuAncwPxETkgldEWy3leyvtOnTlTVXDA+6egww8E7mKUBEwALS0Iq47bqc+bsu10TSbXP8SS1ctMavgnFWDX841ALUah+VyR9kzwj2Gbw9rpXyGMzpY5E/GDSR2WDvPV52o5erlokNTdgIjXNEyOBvWgTmuIh7feOWI7FpGWkU4eMpK90m82VhVU7MZyBgR3Ce5vSR12qBldOF0UxnEvmE+JvTRZYv72S/akO0npv0Qd9kUol3jlyFAjj3rSTYp7FrbYQgPX2BoSxKKlguF3PxSnFsJRTSqVonJRrxJBi/n3435lw4XlgP7+EUCCy3mfPBKxLwCGggMgbm3RgVZ1pGwogY8BYUejVfs0FEEMuETXEM46okyPH0z3+oH+Cr2V4lnUJRZ5jZm8SKXEYU+VZJs/YMhlRGU3IOEWYk4x1rr1IAOvc+/b9qBWQXdvbtt620Pcuz9nBpAf1IR0uK6FMCdteoZ6r2IwG45ha9oS6XIxymd5VZjEp+QBcXcwXH1i6HarS4tEC8nk8mNxeSOGBhs1L8kaIaK9UvDqM2I4Sc0BXOu6xuyVHD7CvbUGgA0A5pDSpinSLUbdktfyKrRld6zMPdl1jFxqinTVQ=
